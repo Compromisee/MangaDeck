@@ -1,0 +1,44 @@
+mangadeck/
+├── main.py                 # Entry point & API aggregation engine
+├── api/
+│   ├── __init__.py
+│   ├── base.py             # Base API class
+│   ├── mangadex.py         # MangaDex API
+│   ├── mangakatana.py      # MangaKatana API
+│   ├── manganato.py        # Manganato API
+│   ├── mangahere.py        # MangaHere API
+│   ├── mangakakalot.py     # MangaKakalot API
+│   ├── webtoon.py          # Webtoon API
+│   ├── manhuaplus.py       # ManhuaPlus API
+│   ├── aggregator.py       # Multi-API aggregation engine
+│ 
+├── core/
+│   ├── __init__.py
+│   ├── downloader.py       # Threaded download engine
+│   ├── converter.py        # EPUB/CBZ/PDF/IMG converter
+│   ├── cropper.py          # Auto-cropping engine
+│   ├── metadata.py         # Metadata & cover generation
+│   ├── queue_manager.py    # Queue & cart system
+│   ├── config.py           # Configuration manager
+│   ├── notifier.py         # Discord/Telegram/Desktop notifications
+│   ├── logger.py           # Advanced logging
+│
+├── gui/
+│   ├── GUI.py              # Tkinter GUI
+│
+├── tui/
+│   ├── TUI.py              # Terminal UI
+│
+├── web/
+│   ├── server.py           # Flask server for DASH + REST API
+│   ├── static/
+│   │   ├── css/
+│   │   │   └── style.css
+│   │   ├── js/
+│   │   │   └── app.js
+│   │   └── icons/
+│   └── templates/
+│       └── dash.html
+│
+├── requirements.txt
+└── README.md

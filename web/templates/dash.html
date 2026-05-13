@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mangadeck</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,300;8..60,400;8..60,600;8..60,700&display=swap"/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined"/>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@300;400;500;600&family=Newsreader:opsz,wght@6..72,400;6..72,600;6..72,700;6..72,800&display=swap"/>
+  <link rel="stylesheet" href="/static/css/style.css"/>
+</head>
+<body>
+
+    <!-- ═══ SPLASH ═══ -->
+    <!-- ═══ NETFLIX-STYLE INTRO ═══ -->
+    <div id="splash" class="splash">
+      <canvas id="splash-particles" class="splash-particles"></canvas>
+      <div class="splash-inner">
+        <div class="intro-stage">
+          <!-- Letter lines that contract inward -->
+          <div class="intro-letters" id="intro-letters">
+            <span class="intro-letter" style="--i:0">M</span>
+            <span class="intro-letter" style="--i:1">A</span>
+            <span class="intro-letter" style="--i:2">N</span>
+            <span class="intro-letter" style="--i:3">G</span>
+            <span class="intro-letter" style="--i:4">A</span>
+            <span class="intro-letter" style="--i:5">D</span>
+            <span class="intro-letter" style="--i:6">E</span>
+            <span class="intro-letter" style="--i:7">C</span>
+            <span class="intro-letter" style="--i:8">K</span>
+          </div>
+          <!-- Horizontal streak lines -->
+          <div class="intro-streaks">
+            <span class="streak" style="--s:0"></span>
+            <span class="streak" style="--s:1"></span>
+            <span class="streak" style="--s:2"></span>
+            <span class="streak" style="--s:3"></span>
+            <span class="streak" style="--s:4"></span>
+            <span class="streak" style="--s:5"></span>
+            <span class="streak" style="--s:6"></span>
+            <span class="streak" style="--s:7"></span>
+          </div>
+          <!-- Glow ring behind title -->
+          <div class="intro-glow"></div>
+        </div>
+        <p class="intro-tagline">Multi-source manga downloader</p>
+        <div class="intro-bar"><div class="intro-bar-fill"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ SIDEBAR ═══ -->
+  <nav id="sidebar" class="sidebar">
+    <div class="sidebar-brand">
+      <div class="brand-icon-wrap">
+        <span class="material-icons-outlined">auto_stories</span>
+      </div>
+      <span class="brand-text">Mangadeck</span>
+    </div>
+    <ul class="sidebar-nav">
+      <li class="nav-item active" data-tab="home">
+        <span class="material-icons-outlined">home</span>
+        <span class="nav-label">Home</span>
+        <span class="nav-ink"></span>
+      </li>
+      <li class="nav-item" data-tab="discover">
+        <span class="material-icons-outlined">explore</span>
+        <span class="nav-label">Discover</span>
+        <span class="nav-ink"></span>
+      </li>
+      <li class="nav-item" data-tab="search">
+        <span class="material-icons-outlined">search</span>
+        <span class="nav-label">Search</span>
+        <span class="nav-ink"></span>
+      </li>
+      <li class="nav-item" data-tab="downloads">
+        <span class="material-icons-outlined">download</span>
+        <span class="nav-label">Downloads</span>
+        <span class="nav-ink"></span>
+      </li>
+      <li class="nav-item" data-tab="cart">
+        <span class="material-icons-outlined">shopping_cart</span>
+        <span class="nav-label">Cart</span>
+        <span id="cart-badge" class="badge hidden">0</span>
+        <span class="nav-ink"></span>
+      </li>
+      <li class="nav-item" data-tab="queue">
+        <span class="material-icons-outlined">queue</span>
+        <span class="nav-label">Queue</span>
+        <span class="nav-ink"></span>
+      </li>
+      <li class="nav-item" data-tab="sources">
+        <span class="material-icons-outlined">dns</span>
+        <span class="nav-label">Sources</span>
+        <span class="nav-ink"></span>
+      </li>
+      <li class="nav-item" data-tab="logs">
+        <span class="material-icons-outlined">receipt_long</span>
+        <span class="nav-label">Logs</span>
+        <span class="nav-ink"></span>
+      </li>
+      <li class="nav-item" data-tab="settings">
+        <span class="material-icons-outlined">settings</span>
+        <span class="nav-label">Settings</span>
+        <span class="nav-ink"></span>
+      </li>
+    </ul>
+    <div class="sidebar-footer">
+      <div class="sidebar-stats" id="sidebar-stats">
+        <div class="mini-stat">
+          <span class="material-icons-outlined">cloud_download</span>
+          <span id="stat-active">0</span>
+        </div>
+        <div class="mini-stat">
+          <span class="material-icons-outlined">shopping_cart</span>
+          <span id="stat-cart">0</span>
+        </div>
+      </div>
+      <a href="https://github.com/Compromisee/Mangadeck" target="_blank" class="sidebar-link">
+        <span class="material-icons-outlined">code</span>
+        <span>GitHub</span>
+      </a>
+    </div>
+  </nav>
+
+  <!-- ═══ MOBILE NAV TOGGLE ═══ -->
+  <button id="mobile-nav" class="mobile-nav">
+    <span class="material-icons-outlined">menu</span>
+  </button>
+
+  <!-- ═══ MAIN ═══ -->
+  <main id="main" class="main">
+
+    <!-- ═══ HOME ═══ -->
+    <section id="tab-home" class="tab-panel active">
+      <div class="home-hero">
+        <canvas id="hero-particles" class="hero-particles"></canvas>
+        <div class="hero-content">
+          <div class="hero-icon-wrap">
+            <span class="material-icons-outlined">auto_stories</span>
+          </div>
+          <h1 class="hero-title">Mangadeck</h1>
+          <p class="hero-sub">Download manga, manhwa, and manhua from 7 sources in one place</p>
+          <div class="hero-actions">
+            <button class="btn btn-hero" data-goto="search">
+              <span class="material-icons-outlined">search</span> Search manga
+            </button>
+            <button class="btn btn-hero-outline" data-goto="discover">
+              <span class="material-icons-outlined">explore</span> Discover trending
+            </button>
+          </div>
+          <div class="hero-chips">
+            <span class="hero-chip">MangaDex</span>
+            <span class="hero-chip">Manganato</span>
+            <span class="hero-chip">MangaKakalot</span>
+            <span class="hero-chip">MangaKatana</span>
+            <span class="hero-chip">MangaHere</span>
+            <span class="hero-chip">ManhuaPlus</span>
+            <span class="hero-chip">Webtoon</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick stats -->
+      <div class="home-stats">
+        <div class="home-stat-card" data-goto="sources">
+          <span class="material-icons-outlined">dns</span>
+          <div class="stat-number" id="home-source-count">7</div>
+          <div class="stat-label">Sources</div>
+        </div>
+        <div class="home-stat-card" data-goto="downloads">
+          <span class="material-icons-outlined">download</span>
+          <div class="stat-number" id="home-download-count">0</div>
+          <div class="stat-label">Downloads</div>
+        </div>
+        <div class="home-stat-card" data-goto="cart">
+          <span class="material-icons-outlined">shopping_cart</span>
+          <div class="stat-number" id="home-cart-count">0</div>
+          <div class="stat-label">In cart</div>
+        </div>
+        <div class="home-stat-card" data-goto="settings">
+          <span class="material-icons-outlined">tune</span>
+          <div class="stat-number" id="home-format">CBZ</div>
+          <div class="stat-label">Format</div>
+        </div>
+      </div>
+
+      <!-- Trending preview -->
+      <div class="home-section">
+        <div class="home-section-header">
+          <h2>Trending now</h2>
+          <button class="btn btn-text" data-goto="discover">
+            View all <span class="material-icons-outlined">arrow_forward</span>
+          </button>
+        </div>
+        <div id="home-trending" class="manga-scroll">
+          <div class="scroll-skeleton" id="home-trending-skeleton"></div>
+        </div>
+      </div>
+
+      <!-- Quick search -->
+      <div class="home-section">
+        <div class="home-section-header">
+          <h2>Quick search</h2>
+        </div>
+        <div class="home-search-wrap">
+          <span class="material-icons-outlined">search</span>
+          <input id="home-search-input" type="text" placeholder="Type a manga title and press Enter..." autocomplete="off"/>
+        </div>
+      </div>
+
+      <!-- Feature cards -->
+      <div class="home-section">
+        <div class="home-section-header">
+          <h2>Features</h2>
+        </div>
+        <div class="feature-grid">
+          <div class="feature-card">
+            <span class="material-icons-outlined">merge_type</span>
+            <h3>Multi-source aggregation</h3>
+            <p>Missing chapters on one source are auto-filled from others</p>
+          </div>
+          <div class="feature-card">
+            <span class="material-icons-outlined">file_present</span>
+            <h3>Multiple formats</h3>
+            <p>Export as EPUB, CBZ, PDF, or organized image folders</p>
+          </div>
+          <div class="feature-card">
+            <span class="material-icons-outlined">crop</span>
+            <h3>Smart auto-crop</h3>
+            <p>Removes borders without over-cropping your pages</p>
+          </div>
+          <div class="feature-card">
+            <span class="material-icons-outlined">devices</span>
+            <h3>Apple Books ready</h3>
+            <p>EPUB files with proper fixed-layout metadata</p>
+          </div>
+          <div class="feature-card">
+            <span class="material-icons-outlined">swap_horiz</span>
+            <h3>RTL / LTR / Vertical</h3>
+            <p>Auto-detects reading direction for manga, manhwa, manhua</p>
+          </div>
+          <div class="feature-card">
+            <span class="material-icons-outlined">notifications_active</span>
+            <h3>Notifications</h3>
+            <p>Discord webhooks, Telegram bots, desktop notifications</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ DISCOVER ═══ -->
+    <section id="tab-discover" class="tab-panel">
+      <header class="panel-header">
+        <div class="panel-header-text">
+          <h2><span class="material-icons-outlined header-icon">explore</span> Discover</h2>
+          <p class="panel-sub">Trending and popular manga across all sources</p>
+        </div>
+      </header>
+      <div class="toolbar">
+        <div class="field-group">
+          <label class="field-label">Language</label>
+          <select id="discover-lang" class="field-select">
+            <option value="en">English</option>
+            <option value="ja">Japanese</option>
+            <option value="ko">Korean</option>
+            <option value="zh">Chinese</option>
+            <option value="fr">French</option>
+            <option value="es">Spanish</option>
+            <option value="de">German</option>
+          </select>
+        </div>
+        <button id="discover-refresh" class="btn btn-outline">
+          <span class="material-icons-outlined">refresh</span> Refresh
+        </button>
+      </div>
+      <div id="discover-grid" class="manga-grid"></div>
+      <div id="discover-pagination" class="pagination"></div>
+    </section>
+
+    <!-- ═══ SEARCH ═══ -->
+    <section id="tab-search" class="tab-panel">
+      <header class="panel-header">
+        <div class="panel-header-text">
+          <h2><span class="material-icons-outlined header-icon">search</span> Search</h2>
+          <p class="panel-sub">Find manga, manhwa, and manhua across all sources</p>
+        </div>
+      </header>
+      <div class="search-bar">
+        <span class="material-icons-outlined search-icon">search</span>
+        <input id="search-input" type="text" class="search-input" placeholder="Search manga title..." autocomplete="off"/>
+        <div class="search-filters">
+          <select id="search-lang" class="field-select field-sm">
+            <option value="en">EN</option>
+            <option value="ja">JA</option>
+            <option value="ko">KO</option>
+            <option value="zh">ZH</option>
+            <option value="all">All</option>
+          </select>
+          <button id="search-btn" class="btn btn-primary">Search</button>
+        </div>
+      </div>
+      <div id="search-results" class="manga-grid"></div>
+      <div id="search-empty" class="empty-state hidden">
+        <span class="material-icons-outlined">manage_search</span>
+        <p>Enter a title to search across all sources</p>
+      </div>
+      <div id="search-pagination" class="pagination"></div>
+    </section>
+
+    <!-- ═══ MANGA DETAIL MODAL ═══ -->
+    <div id="manga-modal" class="modal hidden">
+      <div class="modal-backdrop"></div>
+      <div class="modal-content">
+        <button class="modal-close">
+          <span class="material-icons-outlined">close</span>
+        </button>
+        <div id="modal-body" class="modal-body">
+          <div class="modal-skeleton">
+            <div class="skel skel-cover"></div>
+            <div class="skel skel-line w80"></div>
+            <div class="skel skel-line w60"></div>
+            <div class="skel skel-line w40"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ DOWNLOADS ═══ -->
+    <section id="tab-downloads" class="tab-panel">
+      <header class="panel-header">
+        <div class="panel-header-text">
+          <h2><span class="material-icons-outlined header-icon">download</span> Downloads</h2>
+          <p class="panel-sub">Active and completed downloads</p>
+        </div>
+      </header>
+      <div class="toolbar">
+        <div class="stats-row" id="download-stats"></div>
+        <button id="clear-downloads" class="btn btn-outline btn-sm">
+          <span class="material-icons-outlined">delete_sweep</span> Clear done
+        </button>
+      </div>
+      <div id="downloads-list" class="downloads-list"></div>
+      <div id="downloads-empty" class="empty-state">
+        <span class="material-icons-outlined">cloud_download</span>
+        <p>No active downloads</p>
+      </div>
+    </section>
+
+    <!-- ═══ CART ═══ -->
+    <section id="tab-cart" class="tab-panel">
+      <header class="panel-header">
+        <div class="panel-header-text">
+          <h2><span class="material-icons-outlined header-icon">shopping_cart</span> Cart</h2>
+          <p class="panel-sub">Select manga and download all at once</p>
+        </div>
+      </header>
+      <div class="toolbar">
+        <span id="cart-count" class="stat-chip">0 items</span>
+        <div class="btn-group">
+          <button id="cart-clear" class="btn btn-outline btn-sm">
+            <span class="material-icons-outlined">remove_shopping_cart</span> Clear
+          </button>
+          <button id="cart-download-all" class="btn btn-primary">
+            <span class="material-icons-outlined">download</span> Download all
+          </button>
+        </div>
+      </div>
+      <div id="cart-list" class="cart-list"></div>
+      <div id="cart-empty" class="empty-state">
+        <span class="material-icons-outlined">add_shopping_cart</span>
+        <p>Cart is empty. Add manga from search or discover.</p>
+      </div>
+    </section>
+
+    <!-- ═══ QUEUE ═══ -->
+    <section id="tab-queue" class="tab-panel">
+      <header class="panel-header">
+        <div class="panel-header-text">
+          <h2><span class="material-icons-outlined header-icon">queue</span> Queue</h2>
+          <p class="panel-sub">Batch download queue</p>
+        </div>
+      </header>
+      <div class="toolbar">
+        <div class="stats-row" id="queue-stats"></div>
+        <div class="btn-group">
+          <button id="queue-start" class="btn btn-primary btn-sm">
+            <span class="material-icons-outlined">play_arrow</span> Start
+          </button>
+          <button id="queue-stop" class="btn btn-outline btn-sm">
+            <span class="material-icons-outlined">stop</span> Stop
+          </button>
+          <button id="queue-clear" class="btn btn-outline btn-sm">
+            <span class="material-icons-outlined">playlist_remove</span> Clear
+          </button>
+        </div>
+      </div>
+      <div id="queue-list" class="queue-list"></div>
+      <div id="queue-empty" class="empty-state">
+        <span class="material-icons-outlined">playlist_add</span>
+        <p>Queue is empty</p>
+      </div>
+    </section>
+
+    <!-- ═══ SOURCES ═══ -->
+    <section id="tab-sources" class="tab-panel">
+      <header class="panel-header">
+        <div class="panel-header-text">
+          <h2><span class="material-icons-outlined header-icon">dns</span> Sources</h2>
+          <p class="panel-sub">API source availability and configuration</p>
+        </div>
+      </header>
+      <div class="toolbar">
+        <button id="check-sources" class="btn btn-outline btn-sm">
+          <span class="material-icons-outlined">wifi_tethering</span> Check all
+        </button>
+      </div>
+      <div id="sources-grid" class="sources-grid"></div>
+    </section>
+
+    <!-- ═══ LOGS ═══ -->
+    <section id="tab-logs" class="tab-panel">
+      <header class="panel-header">
+        <div class="panel-header-text">
+          <h2><span class="material-icons-outlined header-icon">receipt_long</span> Logs</h2>
+          <p class="panel-sub">Application activity and diagnostics</p>
+        </div>
+      </header>
+      <div class="toolbar">
+        <div class="field-group">
+          <select id="log-level-filter" class="field-select field-sm">
+            <option value="">All levels</option>
+            <option value="DEBUG">Debug</option>
+            <option value="INFO">Info</option>
+            <option value="WARNING">Warning</option>
+            <option value="ERROR">Error</option>
+          </select>
+          <input id="log-search" type="text" class="field-input field-sm" placeholder="Filter logs..."/>
+        </div>
+        <button id="clear-logs" class="btn btn-outline btn-sm">
+          <span class="material-icons-outlined">delete</span> Clear
+        </button>
+      </div>
+      <div id="log-stats" class="stats-row"></div>
+      <div id="logs-container" class="logs-container"></div>
+    </section>
+
+    <!-- ═══ SETTINGS ═══ -->
+    <section id="tab-settings" class="tab-panel">
+      <header class="panel-header">
+        <div class="panel-header-text">
+          <h2><span class="material-icons-outlined header-icon">settings</span> Settings</h2>
+          <p class="panel-sub">Configure Mangadeck</p>
+        </div>
+      </header>
+      <div class="settings-grid">
+
+        <div class="settings-card">
+          <h3 class="settings-card-title">
+            <span class="material-icons-outlined">folder</span> Output
+          </h3>
+          <div class="settings-field">
+            <label>Output directory</label>
+            <input id="cfg-output-dir" type="text" class="field-input"/>
+          </div>
+          <div class="settings-field">
+            <label>Default format</label>
+            <select id="cfg-default-format" class="field-select">
+              <option value="cbz">CBZ</option>
+              <option value="epub">EPUB</option>
+              <option value="pdf">PDF</option>
+              <option value="images">Images</option>
+            </select>
+          </div>
+          <div class="settings-field">
+            <label>Language</label>
+            <select id="cfg-language" class="field-select">
+              <option value="en">English</option>
+              <option value="ja">Japanese</option>
+              <option value="ko">Korean</option>
+              <option value="zh">Chinese</option>
+              <option value="fr">French</option>
+              <option value="es">Spanish</option>
+              <option value="de">German</option>
+              <option value="pt-br">Portuguese (BR)</option>
+              <option value="it">Italian</option>
+              <option value="ru">Russian</option>
+            </select>
+          </div>
+          <div class="settings-field">
+            <label>Reading direction</label>
+            <select id="cfg-reading-direction" class="field-select">
+              <option value="auto">Auto-detect</option>
+              <option value="rtl">Right to left</option>
+              <option value="ltr">Left to right</option>
+              <option value="vertical">Vertical (webtoon)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="settings-card">
+          <h3 class="settings-card-title">
+            <span class="material-icons-outlined">speed</span> Performance
+          </h3>
+          <div class="settings-field">
+            <label>Concurrent downloads</label>
+            <input id="cfg-max-downloads" type="number" class="field-input" min="1" max="16"/>
+          </div>
+          <div class="settings-field">
+            <label>Concurrent images</label>
+            <input id="cfg-max-images" type="number" class="field-input" min="1" max="32"/>
+          </div>
+          <div class="settings-field">
+            <label>Bandwidth limit (KB/s, 0 = unlimited)</label>
+            <input id="cfg-bandwidth" type="number" class="field-input" min="0"/>
+          </div>
+          <div class="settings-field">
+            <label>Rate limit delay (sec)</label>
+            <input id="cfg-rate-limit" type="number" class="field-input" min="0" step="0.1"/>
+          </div>
+        </div>
+
+        <div class="settings-card">
+          <h3 class="settings-card-title">
+            <span class="material-icons-outlined">crop</span> Image Processing
+          </h3>
+          <div class="settings-field">
+            <label class="check-label">
+              <input id="cfg-auto-crop" type="checkbox"/>
+              <span>Auto-crop borders</span>
+            </label>
+          </div>
+          <div class="settings-field">
+            <label>Crop threshold</label>
+            <input id="cfg-crop-threshold" type="number" class="field-input" min="0" max="100"/>
+          </div>
+          <div class="settings-field">
+            <label>Min crop ratio (0.5 - 1.0)</label>
+            <input id="cfg-crop-min-ratio" type="number" class="field-input" min="0.5" max="1.0" step="0.05"/>
+          </div>
+          <div class="settings-field">
+            <label>JPEG quality</label>
+            <input id="cfg-jpeg-quality" type="number" class="field-input" min="50" max="100"/>
+          </div>
+        </div>
+
+        <div class="settings-card">
+          <h3 class="settings-card-title">
+            <span class="material-icons-outlined">menu_book</span> EPUB
+          </h3>
+          <div class="settings-field">
+            <label class="check-label">
+              <input id="cfg-epub-apple" type="checkbox"/>
+              <span>Apple Books compatibility</span>
+            </label>
+          </div>
+          <div class="settings-field">
+            <label class="check-label">
+              <input id="cfg-epub-cover" type="checkbox"/>
+              <span>Generate cover page</span>
+            </label>
+          </div>
+          <div class="settings-field">
+            <label class="check-label">
+              <input id="cfg-epub-vertical" type="checkbox"/>
+              <span>Vertical mode (webtoon/manhua)</span>
+            </label>
+          </div>
+          <div class="settings-field">
+            <label>Page width (px)</label>
+            <input id="cfg-epub-width" type="number" class="field-input" min="400" max="3000"/>
+          </div>
+          <div class="settings-field">
+            <label>Page height (px)</label>
+            <input id="cfg-epub-height" type="number" class="field-input" min="400" max="4000"/>
+          </div>
+        </div>
+
+        <div class="settings-card">
+          <h3 class="settings-card-title">
+            <span class="material-icons-outlined">notifications</span> Notifications
+          </h3>
+          <div class="settings-field">
+            <label class="check-label">
+              <input id="cfg-notify" type="checkbox"/>
+              <span>Enable notifications</span>
+            </label>
+          </div>
+          <div class="settings-field">
+            <label class="check-label">
+              <input id="cfg-notify-desktop" type="checkbox"/>
+              <span>Desktop notifications</span>
+            </label>
+          </div>
+          <div class="settings-field">
+            <label>Discord webhook URL</label>
+            <div class="field-with-btn">
+              <input id="cfg-discord-webhook" type="text" class="field-input" placeholder="https://discord.com/api/webhooks/..."/>
+              <button id="test-discord" class="btn btn-outline btn-sm">Test</button>
+            </div>
+          </div>
+          <div class="settings-field">
+            <label>Telegram bot token</label>
+            <input id="cfg-telegram-token" type="text" class="field-input"/>
+          </div>
+          <div class="settings-field">
+            <label>Telegram chat ID</label>
+            <div class="field-with-btn">
+              <input id="cfg-telegram-chat" type="text" class="field-input"/>
+              <button id="test-telegram" class="btn btn-outline btn-sm">Test</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="settings-card">
+          <h3 class="settings-card-title">
+            <span class="material-icons-outlined">palette</span> Appearance
+          </h3>
+          <div class="settings-field">
+            <label>Theme</label>
+            <select id="cfg-theme" class="field-select">
+              <option value="dark">Dark</option>
+              <option value="light">Light</option>
+            </select>
+          </div>
+          <div class="settings-field">
+            <label class="check-label">
+              <input id="cfg-high-contrast" type="checkbox"/>
+              <span>High contrast mode</span>
+            </label>
+          </div>
+          <div class="settings-field">
+            <label class="check-label">
+              <input id="cfg-minimal" type="checkbox"/>
+              <span>Minimal mode</span>
+            </label>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="settings-actions">
+        <button id="save-settings" class="btn btn-primary">
+          <span class="material-icons-outlined">save</span> Save settings
+        </button>
+        <button id="reset-settings" class="btn btn-outline">
+          <span class="material-icons-outlined">restart_alt</span> Reset defaults
+        </button>
+        <button id="export-config" class="btn btn-outline">
+          <span class="material-icons-outlined">file_download</span> Export
+        </button>
+        <label class="btn btn-outline">
+          <span class="material-icons-outlined">file_upload</span> Import
+          <input id="import-config" type="file" accept=".json" class="hidden"/>
+        </label>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ═══ CONFETTI ═══ -->
+  <canvas id="confetti-canvas" class="confetti-canvas"></canvas>
+
+  <!-- ═══ TOASTS ═══ -->
+  <div id="toasts" class="toast-container"></div>
+
+  <script src="/static/js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,3 @@
+"""
+Mangadeck GUI module.
+"""
