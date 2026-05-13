@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mangadeck — Multi-Source Manga Downloader</title>
+  <meta name="description" content="Download manga, manhwa, and manhua from 7+ sources. EPUB, CBZ, PDF. Auto chapter aggregation. Open source."/>
+  <meta property="og:title" content="Mangadeck"/>
+  <meta property="og:description" content="Multi-source manga downloader with chapter aggregation"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://compromisee.github.io/Mangadeck"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=IBM+Plex+Mono:wght@300;400;500;600&family=Newsreader:opsz,wght@6..72,400;6..72,600;6..72,700;6..72,800&display=swap"/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <!-- ═══ NAV ═══ -->
+  <nav id="nav" class="nav">
+    <div class="nav-inner">
+      <a href="#hero" class="nav-brand">
+        <span class="material-icons-outlined">auto_stories</span>
+        <span>Mangadeck</span>
+      </a>
+      <div class="nav-links">
+        <a href="#features">Features</a>
+        <a href="#terminal">Demo</a>
+        <a href="#sources">Sources</a>
+        <a href="#formats">Formats</a>
+        <a href="#community">Community</a>
+        <a href="https://github.com/Compromisee/Mangadeck" target="_blank" class="nav-cta">
+          <span class="material-icons-outlined">code</span> GitHub
+        </a>
+      </div>
+      <button id="nav-toggle" class="nav-toggle">
+        <span class="material-icons-outlined">menu</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ═══ HERO ═══ -->
+  <section id="hero" class="hero">
+    <canvas id="hero-canvas" class="hero-canvas"></canvas>
+    <div class="hero-content" data-parallax="0.3">
+      <div class="hero-badge">Open Source</div>
+      <h1 class="hero-title">
+        <span class="hero-letter" style="--i:0">M</span>
+        <span class="hero-letter" style="--i:1">a</span>
+        <span class="hero-letter" style="--i:2">n</span>
+        <span class="hero-letter" style="--i:3">g</span>
+        <span class="hero-letter" style="--i:4">a</span>
+        <span class="hero-letter" style="--i:5">d</span>
+        <span class="hero-letter" style="--i:6">e</span>
+        <span class="hero-letter" style="--i:7">c</span>
+        <span class="hero-letter" style="--i:8">k</span>
+      </h1>
+      <p class="hero-sub">Download manga, manhwa, and manhua from <strong>7 sources</strong> in one place.<br/>Auto-aggregates missing chapters. Exports to EPUB, CBZ, PDF.</p>
+      <div class="hero-actions">
+        <a href="https://github.com/Compromisee/Mangadeck" target="_blank" class="btn-hero">
+          <span class="material-icons-outlined">download</span> Get Mangadeck
+        </a>
+        <a href="#terminal" class="btn-hero-ghost">
+          <span class="material-icons-outlined">terminal</span> See it in action
+        </a>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <span class="hero-stat-num" data-count="7">0</span>
+          <span class="hero-stat-label">Sources</span>
+        </div>
+        <div class="hero-stat">
+          <span class="hero-stat-num" data-count="4">0</span>
+          <span class="hero-stat-label">Formats</span>
+        </div>
+        <div class="hero-stat">
+          <span class="hero-stat-num" data-count="3">0</span>
+          <span class="hero-stat-label">Interfaces</span>
+        </div>
+        <div class="hero-stat">
+          <span class="hero-stat-num" data-count="100">0</span>
+          <span class="hero-stat-label">% Free</span>
+        </div>
+      </div>
+    </div>
+    <div class="hero-scroll-hint">
+      <span class="material-icons-outlined">expand_more</span>
+    </div>
+  </section>
+
+  <!-- ═══ FEATURES ═══ -->
+  <section id="features" class="section">
+    <div class="section-inner">
+      <div class="section-header" data-reveal>
+        <span class="section-tag">Why Mangadeck</span>
+        <h2>Everything you need in one tool</h2>
+        <p class="section-sub">No more switching between sites. No more missing chapters. No more broken downloads.</p>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card" data-reveal data-delay="0">
+          <div class="feature-icon-wrap">
+            <span class="material-icons-outlined">merge_type</span>
+          </div>
+          <h3>Multi-Source Aggregation</h3>
+          <p>If MangaDex stops at chapter 763, Mangadeck automatically finds chapters 764-1076 from Manganato, MangaKakalot, and others. You get a complete, gap-free download every time.</p>
+        </div>
+        <div class="feature-card" data-reveal data-delay="1">
+          <div class="feature-icon-wrap">
+            <span class="material-icons-outlined">devices</span>
+          </div>
+          <h3>Three Interfaces</h3>
+          <p>A full web dashboard with live progress, a desktop GUI built with Tkinter, and a rich terminal UI with animated progress bars. Use whatever fits your workflow.</p>
+        </div>
+        <div class="feature-card" data-reveal data-delay="2">
+          <div class="feature-icon-wrap">
+            <span class="material-icons-outlined">file_present</span>
+          </div>
+          <h3>Multiple Formats</h3>
+          <p>Export as EPUB (Apple Books compatible), CBZ (comic readers), PDF, or organized image folders. Proper metadata, reading direction, and cover pages included.</p>
+        </div>
+        <div class="feature-card" data-reveal data-delay="3">
+          <div class="feature-icon-wrap">
+            <span class="material-icons-outlined">crop</span>
+          </div>
+          <h3>Smart Auto-Crop</h3>
+          <p>Automatically detects and removes white or black borders from pages. Configurable threshold and minimum ratio prevents over-cropping. Your pages look clean on every device.</p>
+        </div>
+        <div class="feature-card" data-reveal data-delay="4">
+          <div class="feature-icon-wrap">
+            <span class="material-icons-outlined">swap_horiz</span>
+          </div>
+          <h3>RTL / LTR / Vertical</h3>
+          <p>Auto-detects reading direction for manga (right-to-left), manhwa (vertical), and manhua (vertical). Embeds proper metadata so your reader app does the right thing.</p>
+        </div>
+        <div class="feature-card" data-reveal data-delay="5">
+          <div class="feature-icon-wrap">
+            <span class="material-icons-outlined">notifications_active</span>
+          </div>
+          <h3>Notifications</h3>
+          <p>Get notified when downloads finish via desktop push notifications, Discord webhooks, or Telegram bots. Perfect for large batch downloads overnight.</p>
+        </div>
+        <div class="feature-card" data-reveal data-delay="6">
+          <div class="feature-icon-wrap">
+            <span class="material-icons-outlined">shopping_cart</span>
+          </div>
+          <h3>Cart & Queue</h3>
+          <p>Browse and add manga to a cart, then download everything at once with a single click. Priority queue processes items sequentially with configurable delays.</p>
+        </div>
+        <div class="feature-card" data-reveal data-delay="7">
+          <div class="feature-icon-wrap">
+            <span class="material-icons-outlined">api</span>
+          </div>
+          <h3>REST API</h3>
+          <p>Full headless server mode with REST endpoints and Server-Sent Events for live progress. Build your own integrations, scripts, or frontends on top of Mangadeck.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ TERMINAL DEMO ═══ -->
+  <section id="terminal" class="section section-dark">
+    <div class="section-inner">
+      <div class="section-header" data-reveal>
+        <span class="section-tag">Live Demo</span>
+        <h2>See it work</h2>
+        <p class="section-sub">Watch Mangadeck search, aggregate, and download from multiple sources in real time.</p>
+      </div>
+      <div class="terminal-wrap" data-reveal>
+        <div class="terminal">
+          <div class="terminal-bar">
+            <span class="terminal-dot red"></span>
+            <span class="terminal-dot yellow"></span>
+            <span class="terminal-dot green"></span>
+            <span class="terminal-title">mangadeck --mode cli</span>
+          </div>
+          <div class="terminal-body" id="terminal-body">
+            <div id="terminal-lines"></div>
+            <div class="terminal-cursor" id="terminal-cursor"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ SOURCES ═══ -->
+  <section id="sources" class="section">
+    <div class="section-inner">
+      <div class="section-header" data-reveal>
+        <span class="section-tag">Sources</span>
+        <h2>7 sources, one unified library</h2>
+        <p class="section-sub">Mangadeck queries all sources simultaneously and merges the results.</p>
+      </div>
+      <div class="sources-grid">
+        <div class="source-card" data-reveal data-delay="0">
+          <div class="source-name">MangaDex</div>
+          <div class="source-types">
+            <span class="pill">manga</span><span class="pill">manhwa</span><span class="pill">manhua</span>
+          </div>
+          <div class="source-detail">REST API &middot; 50+ languages</div>
+        </div>
+        <div class="source-card" data-reveal data-delay="1">
+          <div class="source-name">Manganato</div>
+          <div class="source-types">
+            <span class="pill">manga</span><span class="pill">manhwa</span><span class="pill">manhua</span>
+          </div>
+          <div class="source-detail">Scraper &middot; English</div>
+        </div>
+        <div class="source-card" data-reveal data-delay="2">
+          <div class="source-name">MangaKakalot</div>
+          <div class="source-types">
+            <span class="pill">manga</span><span class="pill">manhwa</span><span class="pill">manhua</span>
+          </div>
+          <div class="source-detail">Scraper &middot; English</div>
+        </div>
+        <div class="source-card" data-reveal data-delay="3">
+          <div class="source-name">MangaKatana</div>
+          <div class="source-types">
+            <span class="pill">manga</span><span class="pill">manhwa</span><span class="pill">manhua</span>
+          </div>
+          <div class="source-detail">Scraper &middot; English</div>
+        </div>
+        <div class="source-card" data-reveal data-delay="4">
+          <div class="source-name">MangaHere</div>
+          <div class="source-types">
+            <span class="pill">manga</span><span class="pill">manhwa</span><span class="pill">manhua</span>
+          </div>
+          <div class="source-detail">Scraper &middot; English</div>
+        </div>
+        <div class="source-card" data-reveal data-delay="5">
+          <div class="source-name">ManhuaPlus</div>
+          <div class="source-types">
+            <span class="pill manhua">manhua</span>
+          </div>
+          <div class="source-detail">Scraper &middot; Chinese comics</div>
+        </div>
+        <div class="source-card" data-reveal data-delay="6">
+          <div class="source-name">Webtoon</div>
+          <div class="source-types">
+            <span class="pill manhwa">manhwa</span>
+          </div>
+          <div class="source-detail">Scraper &middot; LINE Webtoon</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FORMATS ═══ -->
+  <section id="formats" class="section section-dark">
+    <div class="section-inner">
+      <div class="section-header" data-reveal>
+        <span class="section-tag">Output</span>
+        <h2>Your manga, your format</h2>
+      </div>
+      <div class="formats-grid">
+        <div class="format-card" data-reveal data-delay="0">
+          <span class="material-icons-outlined">menu_book</span>
+          <h3>EPUB</h3>
+          <p>Fixed-layout EPUB 3.0 with Apple Books compatibility. Proper page progression direction, cover pages, and chapter navigation.</p>
+        </div>
+        <div class="format-card" data-reveal data-delay="1">
+          <span class="material-icons-outlined">archive</span>
+          <h3>CBZ</h3>
+          <p>Comic book archive with ComicInfo.xml metadata. Works with every comic reader: Komga, Kavita, CDisplayEx, YACReader.</p>
+        </div>
+        <div class="format-card" data-reveal data-delay="2">
+          <span class="material-icons-outlined">picture_as_pdf</span>
+          <h3>PDF</h3>
+          <p>Auto-sized PDF pages matching source image dimensions. Simple, universal, works everywhere.</p>
+        </div>
+        <div class="format-card" data-reveal data-delay="3">
+          <span class="material-icons-outlined">photo_library</span>
+          <h3>Images</h3>
+          <p>Organized chapter folders with numbered pages. Perfect for custom workflows or further processing.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ INSTALL ═══ -->
+  <section id="install" class="section">
+    <div class="section-inner">
+      <div class="section-header" data-reveal>
+        <span class="section-tag">Get Started</span>
+        <h2>Up and running in 30 seconds</h2>
+      </div>
+      <div class="install-terminal" data-reveal>
+        <div class="terminal">
+          <div class="terminal-bar">
+            <span class="terminal-dot red"></span>
+            <span class="terminal-dot yellow"></span>
+            <span class="terminal-dot green"></span>
+            <span class="terminal-title">bash</span>
+          </div>
+          <div class="terminal-body terminal-static">
+<pre><span class="t-comment"># Clone the repo</span>
+<span class="t-prompt">$</span> git clone https://github.com/Compromisee/Mangadeck.git
+<span class="t-prompt">$</span> cd Mangadeck
+
+<span class="t-comment"># Install dependencies</span>
+<span class="t-prompt">$</span> pip install -r requirements.txt
+
+<span class="t-comment"># Launch the web dashboard</span>
+<span class="t-prompt">$</span> python main.py
+<span class="t-output">  Mangadeck Dashboard: http://127.0.0.1:5000</span>
+
+<span class="t-comment"># Or use the terminal UI</span>
+<span class="t-prompt">$</span> python main.py --mode tui
+
+<span class="t-comment"># Or the desktop GUI</span>
+<span class="t-prompt">$</span> python main.py --mode gui</pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ COMMUNITY ═══ -->
+  <section id="community" class="section section-dark">
+    <div class="section-inner">
+      <div class="section-header" data-reveal>
+        <span class="section-tag">Community</span>
+        <h2>Join the project</h2>
+        <p class="section-sub">Contribute, report issues, or just hang out.</p>
+      </div>
+      <div class="social-grid">
+        <a href="https://github.com/Compromisee/Mangadeck" target="_blank" class="social-card" data-reveal data-delay="0">
+          <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+          <h3>GitHub</h3>
+          <p>Star the repo, fork it, open PRs</p>
+          <span class="social-handle">@Compromisee</span>
+        </a>
+        <a href="https://discord.gg/u5jAS7Vt" target="_blank" class="social-card" data-reveal data-delay="1">
+          <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189z"/></svg>
+          <h3>Discord</h3>
+          <p>Chat, get help, share configs</p>
+          <span class="social-handle">Join server</span>
+        </a>
+        <a href="https://www.reddit.com/user/Defiant_Chef8080/" target="_blank" class="social-card" data-reveal data-delay="2">
+          <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z"/></svg>
+          <h3>Reddit</h3>
+          <p>Updates, discussions, feedback</p>
+          <span class="social-handle">u/Defiant_Chef8080</span>
+        </a>
+        <a href="https://www.youtube.com/@Whyshould1laugh" target="_blank" class="social-card" data-reveal data-delay="3">
+          <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+          <h3>YouTube</h3>
+          <p>Tutorials, demos, walkthroughs</p>
+          <span class="social-handle">@Whyshould1laugh</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FOOTER ═══ -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <span class="material-icons-outlined">auto_stories</span>
+        <span>Mangadeck</span>
+      </div>
+      <p class="footer-copy">Open source under MIT License. Built by <a href="https://github.com/Compromisee" target="_blank">Compromisee</a>.</p>
+      <div class="footer-links">
+        <a href="https://github.com/Compromisee/Mangadeck" target="_blank">GitHub</a>
+        <a href="https://discord.gg/u5jAS7Vt" target="_blank">Discord</a>
+        <a href="https://www.reddit.com/user/Defiant_Chef8080/" target="_blank">Reddit</a>
+        <a href="https://www.youtube.com/@Whyshould1laugh" target="_blank">YouTube</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
